@@ -8,11 +8,11 @@
 		<version>3.0.6</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.mikko</groupId>
-	<artifactId>hsl-bikes</artifactId>
+	<groupId>com.hslbike</groupId>
+	<artifactId>hslbike</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>hsl-bikes</name>
-	<description>Solita HSL project, data from mongoDB</description>
+	<name>hslbike</name>
+	<description>HSLBike application</description>
 	<properties>
 		<java.version>17</java.version>
 	</properties>
@@ -26,6 +26,12 @@
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<scope>runtime</scope>
+			<optional>true</optional>
+		</dependency>
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
