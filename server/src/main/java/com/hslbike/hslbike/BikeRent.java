@@ -11,7 +11,7 @@ import org.springframework.data.mongodb.core.mapping.Field;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
-@Document(collection = "HSLtest")
+@Document(collection = "HSLtest2")
 @AllArgsConstructor
 @NoArgsConstructor
 public class BikeRent {
