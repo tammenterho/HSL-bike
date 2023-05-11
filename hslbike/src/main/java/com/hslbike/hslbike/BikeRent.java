@@ -1,5 +1,6 @@
 package com.hslbike.hslbike;
 
+import java.time.Duration;
 import java.time.LocalDateTime;
 
 import org.bson.types.ObjectId;
@@ -17,7 +18,7 @@ public class BikeRent {
 	
 	@Field("_id")
 	@Id
-	private ObjectId id;
+	private String id;
 	private LocalDateTime Departure;
 	private LocalDateTime Return;
 	@Field("Departure station id")
@@ -31,12 +32,12 @@ public class BikeRent {
 	@Field("Covered distance (m)")
 	private int coveredDistance;
 	@Field("Duration")
-	private int duration;
+	private String duration;
 	
-	public ObjectId getId() {
+	public String getId() {
 		return id;
 	}
-	public void setId(ObjectId id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	public LocalDateTime getDeparture() {
@@ -82,10 +83,10 @@ public class BikeRent {
 	public void setCoveredDistance(int coveredDistance) {
 		this.coveredDistance = coveredDistance;
 	}
-	public int getDuration() {
+	public String getDuration() {
 		return duration;
 	}
-	public void setDuration(int duration) {
+	public void setDuration(String duration) {
 		this.duration = duration;
 	}
 }
