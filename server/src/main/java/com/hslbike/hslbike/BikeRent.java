@@ -32,7 +32,7 @@ public class BikeRent {
 	@Field("Covered distance (m)")
 	private int coveredDistance;
 	@Field("Duration")
-	private String duration;
+	private int duration;
 	
 	public String getId() {
 		return id;
@@ -83,10 +83,10 @@ public class BikeRent {
 	public void setCoveredDistance(int coveredDistance) {
 		this.coveredDistance = coveredDistance;
 	}
-	public String getDuration() {
+	public int getDuration() {
 		return duration;
 	}
-	public void setDuration(String duration) {
+	public void setDuration(int duration) {
 		this.duration = duration;
 	}
 }
