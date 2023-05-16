@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -18,9 +19,10 @@ public class BikeRentController {
 
 	@CrossOrigin(origins = "http://localhost:3000")
 	@GetMapping
-	public ResponseEntity<List<BikeRent>> allTrips() {
-		return new ResponseEntity<List<BikeRent>>( bservice.getAllTrips(), HttpStatus.OK);
-		
+	public ResponseEntity<List<BikeRent>> allTrips(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int limit) {
+	    List<BikeRent> trips = bservice.getTripsPaginated(page, limit);
+	    return new ResponseEntity<List<BikeRent>>(trips, HttpStatus.OK);
 	}
+
 
 }

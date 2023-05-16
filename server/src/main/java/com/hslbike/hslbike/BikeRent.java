@@ -1,9 +1,7 @@
 package com.hslbike.hslbike;
 
-import java.time.Duration;
 import java.time.LocalDateTime;
 
-import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
@@ -11,7 +9,7 @@ import org.springframework.data.mongodb.core.mapping.Field;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
-@Document(collection = "HSLtest2")
+@Document(collection = "HSLtrips")
 @AllArgsConstructor
 @NoArgsConstructor
 public class BikeRent {
