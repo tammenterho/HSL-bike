@@ -1,0 +1,9 @@
+.tableContainer {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .tripsTable {
+    text-align: center;
+  }
+  

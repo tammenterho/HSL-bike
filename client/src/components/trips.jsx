@@ -1,6 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useGetAllTripsQuery } from "./../features/apiSlice";
 import {incrementPage} from "./../features/tripsSlice"
+import './../App.css'
 
 
 export const Data = () => {
@@ -13,7 +14,7 @@ export const Data = () => {
   };
 
   console.log(page);
-  console.log(data);
+  
 
   const formatDuration = (duration) => {
     const minutes = Math.floor(duration / 60);
@@ -23,8 +24,9 @@ export const Data = () => {
 
   return (
     <div>
+    <div className="tripsContainer">
       {data ? (
-        <table>
+        <table className="tripsTable">
           <thead>
             <tr>
               <th>Start</th>
@@ -47,7 +49,10 @@ export const Data = () => {
       ) : (
         <p>Loading...</p>
       )}
+    </div>
+    <div className="buttonMore">
       <button onClick={handleLoadMore}>Load more</button>
+    </div>
     </div>
   );
 };

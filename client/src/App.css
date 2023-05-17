@@ -1,6 +1,54 @@
 .App {
   text-align: center;
+  background-color: #bbfcf8;
 }
+
+.tripsContainer {
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tripsTable {
+  text-align: center;
+  table-layout: fixed;
+  width: 90%;
+}
+
+.buttonMore {
+  margin-top: 4%;
+}
+
+.tripsTable th:nth-child(1),
+.tripsTable td:nth-child(1) {
+  width: 30%;
+}
+
+.tripsTable th:nth-child(2),
+.tripsTable td:nth-child(2) {
+  width: 30%;
+}
+
+.tripsTable th:nth-child(3),
+.tripsTable td:nth-child(3) {
+  width: 15%;
+}
+
+.tripsTable th:nth-child(4),
+.tripsTable td:nth-child(4) {
+  width: 15%;
+}
+
+.tripsTable tbody tr:nth-child(even) {
+  background-color: #fcdede; /* Vaihda haluamaksesi väriksi */
+}
+
+.tripsTable tbody tr:nth-child(odd) {
+  background-color: #d8cbf9; /* Vaihda haluamaksesi väriksi */
+}
+
+
 
 .App-logo {
   height: 40vmin;
@@ -35,4 +83,8 @@
   to {
     transform: rotate(360deg);
   }
+}
+ 
+.tripsTaulukko {
+  color: aqua;
 }
