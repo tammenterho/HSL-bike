@@ -14,15 +14,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/trips")
 public class BikeRentController {
-	@Autowired
-	private BikeRentService bservice;
+    @Autowired
+    private BikeRentService bservice;
 
-	@CrossOrigin(origins = "http://localhost:3000")
-	@GetMapping
-	public ResponseEntity<List<BikeRent>> allTrips(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int limit) {
-	    List<BikeRent> trips = bservice.getTripsPaginated(page * limit, limit);
-	    return new ResponseEntity<List<BikeRent>>(trips, HttpStatus.OK);
-	}
-
-
+    @CrossOrigin(origins = "http://localhost:3000")
+    @GetMapping
+    public ResponseEntity<List<BikeRent>> allTrips(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int limit) {
+        List<BikeRent> trips = bservice.getValidTripsPaginated(page * limit, limit);
+        return new ResponseEntity<List<BikeRent>>(trips, HttpStatus.OK);
+    }
 }
+

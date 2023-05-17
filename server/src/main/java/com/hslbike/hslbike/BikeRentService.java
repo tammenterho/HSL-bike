@@ -1,5 +1,6 @@
 package com.hslbike.hslbike;
 
+import java.util.ArrayList;
 import java.util.List;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,17 +11,25 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class BikeRentService {
-	@Autowired
-	private BikeRentRepository brepo;
-	
-	public List<BikeRent> getAllTrips() {
-		return brepo.findAll();
-		
-	}
+    @Autowired
+    private BikeRentRepository brepo;
 
-	public List<BikeRent> getTripsPaginated(int page, int limit) {
+    public List<BikeRent> getAllTrips() {
+        return brepo.findAll();
+    }
+
+    public List<BikeRent> getValidTripsPaginated(int page, int limit) {
         Pageable pageable = PageRequest.of(page, limit);
         Page<BikeRent> pageResult = brepo.findAll(pageable);
-        return pageResult.getContent();
+        List<BikeRent> trips = pageResult.getContent();
+
+        List<BikeRent> validTrips = new ArrayList<>();
+        for (BikeRent trip : trips) {
+            if (trip.getDuration() > 10 && trip.getCoveredDistance() > 10) {
+                validTrips.add(trip);
+            }
+        }
+
+        return validTrips;
     }
 }
