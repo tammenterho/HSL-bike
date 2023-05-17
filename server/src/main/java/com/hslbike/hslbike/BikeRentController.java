@@ -20,7 +20,7 @@ public class BikeRentController {
 	@CrossOrigin(origins = "http://localhost:3000")
 	@GetMapping
 	public ResponseEntity<List<BikeRent>> allTrips(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int limit) {
-	    List<BikeRent> trips = bservice.getTripsPaginated(page, limit);
+	    List<BikeRent> trips = bservice.getTripsPaginated(page * limit, limit);
 	    return new ResponseEntity<List<BikeRent>>(trips, HttpStatus.OK);
 	}
 

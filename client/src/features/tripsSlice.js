@@ -1,29 +1,19 @@
-import { createSlice } from "@reduxjs/toolkit";
+// tripsSlice.js
 
-export const tripsSlice = createSlice({
-  name: "trips",
+import { createSlice } from '@reduxjs/toolkit';
+
+const tripsSlice = createSlice({
+  name: 'trips',
   initialState: {
-    data: [],
-    page: 1,
-    loading: false,
-    error: null,
+    page: 0,
   },
   reducers: {
-    fetchTripsStart: (state) => {
-      state.loading = true;
-    },
-    fetchTripsSuccess: (state, action) => {
-      state.loading = false;
-      state.data = [...state.data, ...action.payload];
-      state.page++;
-    },
-    fetchTripsFailure: (state, action) => {
-      state.loading = false;
-      state.error = action.payload;
+    incrementPage(state) {
+      state.page += 1;
     },
   },
 });
 
-export const { fetchTripsStart, fetchTripsSuccess, fetchTripsFailure } = tripsSlice.actions;
+export const { incrementPage } = tripsSlice.actions;
 
 export default tripsSlice.reducer;

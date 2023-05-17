@@ -7,15 +7,16 @@ import { ApiProvider } from '@reduxjs/toolkit/dist/query/react';
 import { tripsApi } from './features/apiSlice';
 
 
+
 function App() {
   return (
     <Provider store ={store}>
-      <ApiProvider api={tripsApi}>
+      {/* <ApiProvider api={tripsApi}> */}
         <div className="App">
       <h1>Moi</h1>
       <Data/>
     </div>
-    </ApiProvider>
+   {/* </ApiProvider> */}
     </Provider>
   );
 }
