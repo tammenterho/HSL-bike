@@ -15,21 +15,31 @@ export const Data = () => {
   console.log(page);
   console.log(data);
 
+  const formatDuration = (duration) => {
+    const minutes = Math.floor(duration / 60);
+    const seconds = duration % 60;
+    return `${minutes} min ${seconds} s`;
+  };
+
   return (
     <div>
       {data ? (
         <table>
           <thead>
             <tr>
-              <th>Distance</th>
               <th>Start</th>
+              <th>End</th>
+              <th>Distance (km)</th>
+              <th>Duration</th>
             </tr>
           </thead>
           <tbody>
             {data.map((trip) => (
               <tr key={trip.id}>
-                <td>{trip.coveredDistance}</td>
                 <td>{trip.departureStationName}</td>
+                <td>{trip.returnStationName}</td>
+                <td>{trip.coveredDistance / 1000}</td>
+                <td>{formatDuration(trip.duration)}</td>
               </tr>
             ))}
           </tbody>
