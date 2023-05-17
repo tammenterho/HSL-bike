@@ -17,7 +17,8 @@
 }
 
 .buttonMore {
-  margin-top: 4%;
+  position: sticky;
+  bottom: 10px;
 }
 
 .tripsTable th:nth-child(1),

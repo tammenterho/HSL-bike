@@ -11,9 +11,15 @@ const tripsSlice = createSlice({
     incrementPage(state) {
       state.page += 1;
     },
+    increment5Pages(state) {
+      state.page += 5;
+    },
+    returnPage(state) {
+      state.page = 0;
+    },
   },
 });
 
-export const { incrementPage } = tripsSlice.actions;
+export const { incrementPage, increment5Pages, returnPage } = tripsSlice.actions;
 
 export default tripsSlice.reducer;
