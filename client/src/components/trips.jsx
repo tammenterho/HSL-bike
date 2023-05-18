@@ -10,7 +10,7 @@ export const Data = () => {
   const { data } = useGetAllTripsQuery({ page });
   const dispatch = useDispatch();
   const [searchTerm, setSearchTerm] = useState(""); // Lisätty searchTerm-tilamuuttuja
-  const { data: searchResults } = useSearchBikeRentsQuery({ searchTerm }); // Lisätty hakutulosten käsittely
+  const { data: searchResults } = useSearchBikeRentsQuery({searchTerm}); // Päivitetty refetch-kutsu
 
   const handleLoadMore = () => {
     dispatch(incrementPage());
@@ -22,6 +22,16 @@ export const Data = () => {
   const handlereturnPage = () => {
     dispatch(returnPage());
   }
+
+  const handleSearch = () => {
+    if (searchTerm.trim() !== "") { // Tarkistetaan, ettei searchTerm ole tyhjä tai pelkkiä välilyöntejä
+      useSearchBikeRentsQuery.refetch({ searchTerm });
+    }
+  };
+  
+  
+  const filteredData = searchResults ?? data ?? [];
+
   // formatoidaan sekunnit minuuteiksi ja sekunneiksi
   const formatDuration = (duration) => {
     const minutes = Math.floor(duration / 60);
@@ -29,23 +39,12 @@ export const Data = () => {
     return `${minutes} min ${seconds} s`;
   };
 
-  // Lisätty handleSearch -funktio hakukentän käsittelyä varten
-  const handleSearch = (event) => {
-    setSearchTerm(event.target.value);
-  };
-
-  // Suodatetaan data hakutulosten perusteella
-  const filteredData = data ? data.filter((trip) => {
-    const departureMatch = trip.departureStationName.toLowerCase().includes(searchTerm.toLowerCase());
-    const returnMatch = trip.returnStationName.toLowerCase().includes(searchTerm.toLowerCase());
-    return departureMatch || returnMatch;
-  }) : [];
-
   return (
     <div>
-      Search <input value={searchTerm} onChange={handleSearch} /> {/* Lisätty onChange-käsittelijä */}
+      Search <input value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
+      
       <div className="tripsContainer">
-        {filteredData.length > 0 ? ( // Käytetään suodatettua dataa
+        {filteredData.length > 0 ? (
           <table className="tripsTable">
             <thead>
               <tr>

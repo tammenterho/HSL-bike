@@ -25,10 +25,15 @@ public class BikeRentController {
         return new ResponseEntity<List<BikeRent>>(trips, HttpStatus.OK);
     }
     
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/search")
     public ResponseEntity<List<BikeRent>> searchBikeRents(@RequestParam String searchTerm) {
         List<BikeRent> searchResults = bservice.searchBikeRents(searchTerm);
         return new ResponseEntity<>(searchResults, HttpStatus.OK);
     }
+  
+
+
+
 }
 
