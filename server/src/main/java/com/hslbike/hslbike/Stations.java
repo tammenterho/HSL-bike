@@ -7,7 +7,7 @@ import org.springframework.data.mongodb.core.mapping.Field;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
-@Document(collection = "HSLstationstest")
+@Document(collection = "HSLstations")
 @AllArgsConstructor
 @NoArgsConstructor
 public class Stations {

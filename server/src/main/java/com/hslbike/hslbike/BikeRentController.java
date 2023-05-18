@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/trips")
 public class BikeRentController {
+	
     @Autowired
     private BikeRentService bservice;
 
@@ -22,6 +23,12 @@ public class BikeRentController {
     public ResponseEntity<List<BikeRent>> allTrips(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int limit) {
         List<BikeRent> trips = bservice.getValidTripsPaginated(page * limit, limit);
         return new ResponseEntity<List<BikeRent>>(trips, HttpStatus.OK);
+    }
+    
+    @GetMapping("/search")
+    public ResponseEntity<List<BikeRent>> searchBikeRents(@RequestParam String searchTerm) {
+        List<BikeRent> searchResults = bservice.searchBikeRents(searchTerm);
+        return new ResponseEntity<>(searchResults, HttpStatus.OK);
     }
 }
 

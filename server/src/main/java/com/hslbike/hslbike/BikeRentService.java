@@ -1,6 +1,7 @@
 package com.hslbike.hslbike;
 
 import java.util.ArrayList;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,5 +32,9 @@ public class BikeRentService {
         }
 
         return validTrips;
+    }
+    
+    public List<BikeRent> searchBikeRents(String departureStationName) {
+        return brepo.findByDepartureStationNameContainingIgnoreCase(departureStationName);
     }
 }

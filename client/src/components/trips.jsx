@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
-import { useGetAllTripsQuery } from "./../features/apiSlice";
-import {increment5Pages, incrementPage, returnPage} from "./../features/tripsSlice"
+import { useGetAllTripsQuery, useSearchBikeRentsQuery } from "./../features/apiSlice";
+import { increment5Pages, incrementPage, returnPage } from "./../features/tripsSlice"
 import './../App.css'
 import { useState } from "react";
 
@@ -10,6 +10,7 @@ export const Data = () => {
   const { data } = useGetAllTripsQuery({ page });
   const dispatch = useDispatch();
   const [searchTerm, setSearchTerm] = useState(""); // Lisätty searchTerm-tilamuuttuja
+  const { data: searchResults } = useSearchBikeRentsQuery({ searchTerm }); // Lisätty hakutulosten käsittely
 
   const handleLoadMore = () => {
     dispatch(incrementPage());
@@ -21,7 +22,7 @@ export const Data = () => {
   const handlereturnPage = () => {
     dispatch(returnPage());
   }
-
+  // formatoidaan sekunnit minuuteiksi ja sekunneiksi
   const formatDuration = (duration) => {
     const minutes = Math.floor(duration / 60);
     const seconds = duration % 60;

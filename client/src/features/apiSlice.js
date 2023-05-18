@@ -11,7 +11,12 @@ export const tripsApi = createApi({
         url: `api/trips?page=${page}`,
       }),
     }),
+    searchBikeRents: builder.query({
+      query: ({ searchTerm }) => ({
+        url: `api/trips/search?searchTerm=${searchTerm}`,
+      })
+    })
   }),
 });
 
-export const { useGetAllTripsQuery } = tripsApi;
+export const { useGetAllTripsQuery, useSearchBikeRentsQuery } = tripsApi;
