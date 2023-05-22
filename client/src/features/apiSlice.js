@@ -14,8 +14,10 @@ export const tripsApi = createApi({
     searchBikeRents: builder.query({
       query: ({ searchTerm }) => ({
         url: `api/trips/search?searchTerm=${searchTerm}`,
+        method: 'GET',
+        params: { searchTerm },
       })
-    })
+    }),
   }),
 });
 

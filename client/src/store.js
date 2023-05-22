@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import tripsReducer from "./features/tripsSlice.js"
+import tripsReducer from "./features/tripsSlice";
 import { tripsApi } from './features/apiSlice';
 
 export const store = configureStore({

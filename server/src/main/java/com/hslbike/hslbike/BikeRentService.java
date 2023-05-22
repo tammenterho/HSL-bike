@@ -34,7 +34,23 @@ public class BikeRentService {
         return validTrips;
     }
     
-    public List<BikeRent> searchBikeRents(String departureStationName) {
-        return brepo.findByDepartureStationNameContainingIgnoreCase(departureStationName);
+    public List<BikeRent> searchBikeRentsPaginated(String searchTerm, int offset, int limit) {
+        List<BikeRent> allResults = searchBikeRents(searchTerm);
+        int endIndex = Math.min(offset + limit, allResults.size());
+        return allResults.subList(offset, endIndex);
+    }
+
+    public List<BikeRent> searchBikeRents(String searchTerm) {
+        // Implement the logic to search bike rents based on the searchTerm
+        // Return the search results as a list of BikeRent objects
+        // Make sure to implement pagination separately in the searchBikeRentsPaginated method
+        // based on the specific requirements of your application
+
+        // Example implementation:
+        List<BikeRent> searchResults = new ArrayList<>();
+        // Perform the search based on the searchTerm
+        // Populate the searchResults list with the matching BikeRent objects
+
+        return searchResults;
     }
 }

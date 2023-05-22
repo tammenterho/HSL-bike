@@ -1,16 +1,17 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useGetAllTripsQuery, useSearchBikeRentsQuery } from "./../features/apiSlice";
-import { increment5Pages, incrementPage, returnPage } from "./../features/tripsSlice"
-import './../App.css'
-import { useState } from "react";
+import { increment5Pages, incrementPage, returnPage, setInputValue } from "./../features/tripsSlice";
+import './../App.css';
+
 
 
 export const Data = () => {
   const page = useSelector((state) => state.trips?.page);
-  const { data } = useGetAllTripsQuery({ page });
+  const { data: allTripsData } = useGetAllTripsQuery({ page });
   const dispatch = useDispatch();
-  const [searchTerm, setSearchTerm] = useState(""); // Lisätty searchTerm-tilamuuttuja
-  const { data: searchResults } = useSearchBikeRentsQuery({searchTerm}); // Päivitetty refetch-kutsu
+  const inputValue = useSelector((state) => state.trips?.inputValue);
+  const { data: searchTripsData } = useSearchBikeRentsQuery(inputValue);
+
 
   const handleLoadMore = () => {
     dispatch(incrementPage());
@@ -18,19 +19,23 @@ export const Data = () => {
 
   const handle5pages = () => {
     dispatch(increment5Pages());
-  }
+  };
+
   const handlereturnPage = () => {
     dispatch(returnPage());
-  }
+  };
 
-  const handleSearch = () => {
-    if (searchTerm.trim() !== "") { // Tarkistetaan, ettei searchTerm ole tyhjä tai pelkkiä välilyöntejä
-      useSearchBikeRentsQuery.refetch({ searchTerm });
-    }
+  // vaihtaa input valueksi joka kerta kun laittaa yhdenkin kirjaimen
+  const handleInputChange = (event) => {
+    dispatch(setInputValue(event.target.value));
   };
   
-  
-  const filteredData = searchResults ?? data ?? [];
+  const handleButtonClick = () => {
+    console.log(inputValue)
+    dispatch(setInputValue(inputValue));
+    
+  };
+
 
   // formatoidaan sekunnit minuuteiksi ja sekunneiksi
   const formatDuration = (duration) => {
@@ -41,10 +46,15 @@ export const Data = () => {
 
   return (
     <div>
-      Search <input value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
+      <div>
+      <input
+        type="text"
+        value={inputValue}
+        onChange={handleInputChange}
+      />
+      <button onClick={handleButtonClick}>Search</button>
       
-      <div className="tripsContainer">
-        {filteredData.length > 0 ? (
+        {allTripsData && allTripsData.length > 0 ? (
           <table className="tripsTable">
             <thead>
               <tr>
@@ -55,7 +65,7 @@ export const Data = () => {
               </tr>
             </thead>
             <tbody>
-              {filteredData.map((trip) => (
+              {allTripsData.map((trip) => (
                 <tr key={trip.id}>
                   <td>{trip.departureStationName}</td>
                   <td>{trip.returnStationName}</td>

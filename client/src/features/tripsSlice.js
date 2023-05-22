@@ -2,10 +2,13 @@
 
 import { createSlice } from '@reduxjs/toolkit';
 
+
+
 const tripsSlice = createSlice({
   name: 'trips',
   initialState: {
     page: 0,
+    inputValue: '',
   },
   reducers: {
     incrementPage(state) {
@@ -17,9 +20,14 @@ const tripsSlice = createSlice({
     returnPage(state) {
       state.page = 0;
     },
+    setInputValue(state, action) {
+      state.inputValue = action.payload;
+    }
   },
+  
 });
 
-export const { incrementPage, increment5Pages, returnPage } = tripsSlice.actions;
+export const { incrementPage, increment5Pages, returnPage, setInputValue } = tripsSlice.actions;
+
 
 export default tripsSlice.reducer;
