@@ -40,6 +40,7 @@ public class BikeRentService {
         return allResults.subList(offset, endIndex);
     }
 
+
     public List<BikeRent> searchBikeRents(String searchTerm) {
         // Implement the logic to search bike rents based on the searchTerm
         // Return the search results as a list of BikeRent objects
