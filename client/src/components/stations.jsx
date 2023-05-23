@@ -1,12 +1,12 @@
-import { useGetAllStationsQuery } from "./../features/apiSlice";
+import { useGetAllStationsQuery, useCountTripsByDepartureStationQuery } from "./../features/apiSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { setStations, increment5Pages, incrementPage, returnPage } from "./../features/stationsSlice";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export const StationsData = () => {
   const page = useSelector((state) => state.stations?.page);
   const dispatch = useDispatch();
-  
+
   const { data: allStationsData } = useGetAllStationsQuery({ page });
 
   useEffect(() => {
@@ -27,9 +27,6 @@ export const StationsData = () => {
     dispatch(returnPage());
   };
 
-  console.log(page)
-
-
   return (
     <div>
       <h1>STATIONS</h1>
@@ -38,14 +35,13 @@ export const StationsData = () => {
           <tr>
             <th>Name</th>
             <th>Address</th>
+            <th>Journeys from station</th>
+            <th>Journeys to station</th>
           </tr>
         </thead>
         <tbody>
           {allStationsData && allStationsData.map((station) => (
-            <tr key={station.id}>
-              <td>{station.nimi}</td>
-              <td>{station.osoite}</td>
-            </tr>
+            <StationRow key={station.id} station={station} />
           ))}
         </tbody>
       </table>
@@ -56,5 +52,25 @@ export const StationsData = () => {
         <button onClick={handle5pages}>+5 pages</button>
       </div>
     </div>
+  );
+};
+
+const StationRow = ({ station }) => {
+  const [tripCount, setTripCount] = useState(null);
+  const { data: countData } = useCountTripsByDepartureStationQuery({ stationName: station.nimi });
+
+  useEffect(() => {
+    if (countData) {
+      setTripCount(countData);
+    }
+  }, [countData]);
+
+  return (
+    <tr>
+      <td>{station.nimi}</td>
+      <td>{station.osoite}</td>
+      <td>{tripCount !== null ? tripCount : 'Loading...'}</td>
+      <td>{/* Journeys to station */}</td>
+    </tr>
   );
 };

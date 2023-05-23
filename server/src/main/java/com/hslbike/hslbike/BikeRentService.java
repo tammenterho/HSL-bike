@@ -54,4 +54,12 @@ public class BikeRentService {
 
         return searchResults;
     }
+    
+    public int countTripsWithDepartureStation(String stationName) {
+        return brepo.countByDepartureStationName(stationName);
+    }
+
+    public int countTripsWithReturnStation(String stationName) {
+        return brepo.countByReturnStationName(stationName);
+    }
 }

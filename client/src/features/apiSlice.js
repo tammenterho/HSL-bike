@@ -21,7 +21,13 @@ export const tripsApi = createApi({
         url: `api/stations?page=${page}`,
       }),
     }),
+    countTripsByDepartureStation: builder.query({
+      query: ({ stationName }) => ({
+        url: `api/trips/count?stationName=${stationName}`,
+        method: 'GET',
+      })
+    }),
   }),
 });
 
-export const { useGetAllTripsQuery, useSearchBikeRentsQuery, useGetAllStationsQuery } = tripsApi;
+export const { useGetAllTripsQuery, useSearchBikeRentsQuery, useGetAllStationsQuery, useCountTripsByDepartureStationQuery  } = tripsApi;

@@ -26,10 +26,16 @@ public class BikeRentController {
     }
     
     @CrossOrigin(origins = "http://localhost:3000")
-    @GetMapping("/api/trips/search")
+    @GetMapping("/search")
     public ResponseEntity<List<BikeRent>> searchBikeRents(@RequestParam String searchTerm, @RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int limit) {
         List<BikeRent> searchResults = bservice.searchBikeRentsPaginated(searchTerm, page * limit, limit);
         return new ResponseEntity<>(searchResults, HttpStatus.OK);
+    }
+    @CrossOrigin(origins = "http://localhost:3000")
+    @GetMapping("/count")
+    public ResponseEntity<Integer> countTripsByDepartureStation(@RequestParam String stationName) {
+        int departureCount = bservice.countTripsWithDepartureStation(stationName);
+        return new ResponseEntity<>(departureCount, HttpStatus.OK);
     }
 }
 
