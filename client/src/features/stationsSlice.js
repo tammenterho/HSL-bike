@@ -6,6 +6,7 @@ const stationsSlice = createSlice({
   initialState: {
     data: [],
     page: 0,
+    inputValue: '', // Include inputValue in the initial state
   },
   reducers: {
     setStations(state, action) {

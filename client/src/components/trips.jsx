@@ -10,7 +10,7 @@ export const Data = () => {
   const { data: allTripsData } = useGetAllTripsQuery({ page });
   const dispatch = useDispatch();
   const inputValue = useSelector((state) => state.trips?.inputValue);
-  const { data: searchTripsData } = useSearchBikeRentsQuery({ searchTerm: inputValue, page: 0 });
+ // const { data: searchTripsData } = useSearchBikeRentsQuery({ searchTerm: inputValue, page: 0 });
 
 
   const handleLoadMore = () => {
@@ -46,6 +46,7 @@ export const Data = () => {
 
   return (
     <div>
+      <h1>JOURNEYS</h1>
       <div>
       <input
         type="text"

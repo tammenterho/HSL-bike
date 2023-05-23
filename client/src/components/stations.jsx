@@ -1,6 +1,6 @@
 import { useGetAllStationsQuery } from "./../features/apiSlice";
 import { useSelector, useDispatch } from "react-redux";
-import { setStations } from "./../features/stationsSlice";
+import { setStations, increment5Pages, incrementPage, returnPage } from "./../features/stationsSlice";
 import { useEffect } from "react";
 
 export const StationsData = () => {
@@ -15,8 +15,24 @@ export const StationsData = () => {
     }
   }, [allStationsData, dispatch]);
 
+  const handleLoadMore = () => {
+    dispatch(incrementPage());
+  };
+
+  const handle5pages = () => {
+    dispatch(increment5Pages());
+  };
+
+  const handlereturnPage = () => {
+    dispatch(returnPage());
+  };
+
+  console.log(page)
+
+
   return (
     <div>
+      <h1>STATIONS</h1>
       <table className="tripsTable">
         <thead>
           <tr>
@@ -33,6 +49,12 @@ export const StationsData = () => {
           ))}
         </tbody>
       </table>
+      <div className="buttonMore">
+        <p>Page: {page + 1}</p>
+        <button onClick={handlereturnPage}>Return</button>
+        <button onClick={handleLoadMore}>Load more</button>
+        <button onClick={handle5pages}>+5 pages</button>
+      </div>
     </div>
   );
 };
