@@ -32,10 +32,16 @@ public class BikeRentController {
         return new ResponseEntity<>(searchResults, HttpStatus.OK);
     }
     @CrossOrigin(origins = "http://localhost:3000")
-    @GetMapping("/count")
+    @GetMapping("/countfrom")
     public ResponseEntity<Integer> countTripsByDepartureStation(@RequestParam String stationName) {
         int departureCount = bservice.countTripsWithDepartureStation(stationName);
         return new ResponseEntity<>(departureCount, HttpStatus.OK);
+    }
+    @CrossOrigin(origins = "http://localhost:3000")
+    @GetMapping("/countto")
+    public ResponseEntity<Integer> countTripsByEndStation(@RequestParam String stationName) {
+    	int returnCount = bservice.countTripsWithReturnStation(stationName);
+    	return new ResponseEntity<>(returnCount, HttpStatus.OK);
     }
 }
 

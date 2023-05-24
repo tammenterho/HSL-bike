@@ -23,11 +23,23 @@ export const tripsApi = createApi({
     }),
     countTripsByDepartureStation: builder.query({
       query: ({ stationName }) => ({
-        url: `api/trips/count?stationName=${stationName}`,
+        url: `api/trips/countfrom?stationName=${stationName}`,
+        method: 'GET',
+      })
+    }),
+    countTripsByReturnStation: builder.query({
+      query: ({ stationName }) => ({
+        url: `api/trips/countto?stationName=${stationName}`,
         method: 'GET',
       })
     }),
   }),
 });
 
-export const { useGetAllTripsQuery, useSearchBikeRentsQuery, useGetAllStationsQuery, useCountTripsByDepartureStationQuery  } = tripsApi;
+export const { 
+  useGetAllTripsQuery, 
+  useSearchBikeRentsQuery, 
+  useGetAllStationsQuery, 
+  useCountTripsByDepartureStationQuery,
+  useCountTripsByReturnStationQuery  
+} = tripsApi;

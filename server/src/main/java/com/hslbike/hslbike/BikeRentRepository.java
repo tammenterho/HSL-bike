@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 public interface BikeRentRepository extends MongoRepository<BikeRent, ObjectId> {
     List<BikeRent> findByDepartureStationNameContainingIgnoreCase(String departureStationName);
     int countByDepartureStationName(String departureStationName);
+    List<BikeRent> findByReturnStationNameContainingIgnoreCase(String departureStationName);
     int countByReturnStationName(String returnStationName);
 }
 

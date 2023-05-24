@@ -34,10 +34,7 @@ public class StationsService {
 	    }
 
 	    private boolean isValidStation(Stations station) {
-	        // Tarkista aseman voimassaoloehdot täällä
-	        // Voit muokata ehtoja tarpeen mukaan
-
-	        return true; // Palauta true oletuksena, jos et tarkista aseman voimassaoloa
+	        return true; 
 	    }
 	
 

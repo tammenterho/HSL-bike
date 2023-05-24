@@ -1,4 +1,4 @@
-import { useGetAllStationsQuery, useCountTripsByDepartureStationQuery } from "./../features/apiSlice";
+import { useGetAllStationsQuery, useCountTripsByDepartureStationQuery, useCountTripsByReturnStationQuery } from "./../features/apiSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { setStations, increment5Pages, incrementPage, returnPage } from "./../features/stationsSlice";
 import { useEffect, useState } from "react";
@@ -57,7 +57,10 @@ export const StationsData = () => {
 
 const StationRow = ({ station }) => {
   const [tripCount, setTripCount] = useState(null);
+  const [returnTripCount, setReturnTripCount] = useState(null);
   const { data: countData } = useCountTripsByDepartureStationQuery({ stationName: station.nimi });
+  const { data: returnCountData } = useCountTripsByReturnStationQuery({ stationName: station.nimi });
+  
 
   useEffect(() => {
     if (countData) {
@@ -65,12 +68,20 @@ const StationRow = ({ station }) => {
     }
   }, [countData]);
 
+  useEffect(() => {
+    if (returnCountData) {
+      setReturnTripCount(returnCountData);
+    }
+  }, [returnCountData]);
+
+ 
+
   return (
     <tr>
       <td>{station.nimi}</td>
       <td>{station.osoite}</td>
       <td>{tripCount !== null ? tripCount : 'Loading...'}</td>
-      <td>{/* Journeys to station */}</td>
+      <td>{returnTripCount !== null ? returnTripCount : 'Loading...'}</td>
     </tr>
   );
 };
