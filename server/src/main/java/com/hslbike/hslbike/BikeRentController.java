@@ -12,33 +12,34 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/trips")
+@RequestMapping("/api/trips")
 public class BikeRentController {
 	
     @Autowired
     private BikeRentService bservice;
 
-    @CrossOrigin(origins = "http://localhost:3000")
+    // @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin(origins = "*")
     @GetMapping
     public ResponseEntity<List<BikeRent>> allTrips(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int limit) {
         List<BikeRent> trips = bservice.getValidTripsPaginated(page * limit, limit);
         return new ResponseEntity<List<BikeRent>>(trips, HttpStatus.OK);
     }
     
-    @CrossOrigin(origins = "http://localhost:3000")
-    @GetMapping("/api/trips/search")
+    @CrossOrigin(origins = "*")
+    @GetMapping("/search")
     public ResponseEntity<List<BikeRent>> searchBikeRents(@RequestParam String searchTerm, @RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int limit) {
         List<BikeRent> searchResults = bservice.searchBikeRentsPaginated(searchTerm, page * limit, limit);
         return new ResponseEntity<>(searchResults, HttpStatus.OK);
     }
-    @CrossOrigin(origins = "http://localhost:3000")
-    @GetMapping("/api/trips/countfrom")
+    @CrossOrigin(origins = "*")
+    @GetMapping("/countfrom")
     public ResponseEntity<Integer> countTripsByDepartureStation(@RequestParam String stationName) {
         int departureCount = bservice.countTripsWithDepartureStation(stationName);
         return new ResponseEntity<>(departureCount, HttpStatus.OK);
     }
-    @CrossOrigin(origins = "http://localhost:3000")
-    @GetMapping("/api/trips/countto")
+    @CrossOrigin(origins = "*")
+    @GetMapping("/countto")
     public ResponseEntity<Integer> countTripsByEndStation(@RequestParam String stationName) {
     	int returnCount = bservice.countTripsWithReturnStation(stationName);
     	return new ResponseEntity<>(returnCount, HttpStatus.OK);
