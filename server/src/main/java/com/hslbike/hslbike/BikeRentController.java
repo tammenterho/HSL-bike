@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/trips")
+@RequestMapping("/trips")
 public class BikeRentController {
 	
     @Autowired
@@ -26,19 +26,19 @@ public class BikeRentController {
     }
     
     @CrossOrigin(origins = "http://localhost:3000")
-    @GetMapping("/search")
+    @GetMapping("/api/trips/search")
     public ResponseEntity<List<BikeRent>> searchBikeRents(@RequestParam String searchTerm, @RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int limit) {
         List<BikeRent> searchResults = bservice.searchBikeRentsPaginated(searchTerm, page * limit, limit);
         return new ResponseEntity<>(searchResults, HttpStatus.OK);
     }
     @CrossOrigin(origins = "http://localhost:3000")
-    @GetMapping("/countfrom")
+    @GetMapping("/api/trips/countfrom")
     public ResponseEntity<Integer> countTripsByDepartureStation(@RequestParam String stationName) {
         int departureCount = bservice.countTripsWithDepartureStation(stationName);
         return new ResponseEntity<>(departureCount, HttpStatus.OK);
     }
     @CrossOrigin(origins = "http://localhost:3000")
-    @GetMapping("/countto")
+    @GetMapping("/api/trips/countto")
     public ResponseEntity<Integer> countTripsByEndStation(@RequestParam String stationName) {
     	int returnCount = bservice.countTripsWithReturnStation(stationName);
     	return new ResponseEntity<>(returnCount, HttpStatus.OK);
