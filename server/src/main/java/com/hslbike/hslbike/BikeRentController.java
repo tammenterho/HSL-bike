@@ -12,12 +12,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/trips")
+@RequestMapping("api/trips")
 public class BikeRentController {
 	
     @Autowired
     private BikeRentService bservice;
 
+    //@CrossOrigin(origins = "http://localhost:3000")
     @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping
     public ResponseEntity<List<BikeRent>> allTrips(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int limit) {
