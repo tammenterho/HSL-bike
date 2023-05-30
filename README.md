@@ -4,30 +4,48 @@ Project Name:
 HSLbike-app
 
 Description:
+
 The HSLbike-app is a web application that displays data from Helsinki city bikes during the summer season. It provides information about bike journeys and bike stations. The application is deployed on Railway at the following address: https://hsl-bike-production.up.railway.app/.
 
 Features:
+
 Display all bike journeys:
+
     - Startpoint
+
     - Endpoint
+
     - Travelled distance
+
     - Duration of the journey
+
 Display all the stations:
+
     - Name
+
     - Address
+
     - Journeys from the station
+
     - Journeys to the station
+
     - Shows 10 results per page
+
     - Shows only journeys longer than 10 meters and 10 seconds
+
 Additional features currently in progress
 
+
 Technologies Used:
+
 Backend:
 
-Spring Boot
-Maven
-Java version 17
-MongoDB Atlas (free tier) as the database
+Spring Boot,
+Maven,
+Java version 17,
+MongoDB Atlas (free tier) as the database,
+
+
 Frontend:
 
 React
