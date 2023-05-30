@@ -48,13 +48,13 @@ export const Data = () => {
     <div>
       <h1>JOURNEYS</h1>
       <div>
-      <input
+      {/*<input
         type="text"
         value={inputValue}
         onChange={handleInputChange}
       />
       <button onClick={handleButtonClick}>Search</button>
-      
+  */}
         {allTripsData && allTripsData.length > 0 ? (
           <table className="tripsTable">
             <thead>
