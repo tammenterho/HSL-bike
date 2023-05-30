@@ -50,7 +50,10 @@ Frontend:
 
 React
 Redux for state management
-Installation
+
+
+Installation:
+
 To run the application locally, follow these steps:
 
 Clone the repository.
