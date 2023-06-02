@@ -1,11 +1,11 @@
-https://hsl-bike-production.up.railway.app/
+https://hsl-bike-production.up.railway.app/ all journeys viewable after journeys to and from station loaded.
 
 Project Name:
 HSLbike-app
 
 Description:
 
-The HSLbike-app is a web application that displays data from Helsinki city bikes during the summer season. It provides information about bike journeys and bike stations. The application is deployed on Railway at the following address: https://hsl-bike-production.up.railway.app/.
+The HSLbike-app is a web application that displays data from Helsinki city bikes during the summer season. It provides information about bike journeys and bike stations. The application is deployed on Railway at the following address: https://hsl-bike-production.up.railway.app/. all journeys viewable after journeys to and from station loaded.
 
 Features:
 
